@@ -33,6 +33,7 @@
       resvg
       imagemagick
       gimp
+      inkscape
       kitty
       foot
       alacritty
@@ -62,6 +63,9 @@
       stellarium
       bc
       goldendict-ng
+      hledger
+      hledger-ui
+      hledger-web
       android-tools
       jdk
       uv

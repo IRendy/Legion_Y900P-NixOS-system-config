@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
     [
       ./modules/system/default.nix
       ./pkgs/default.nix
-      ./users/irendy/configuration.nix
+      ./users/irendy/configuration.nix 
       ./hosts/Legion_Y9000P/default.nix
       # ./hosts/Thinkpad_X230/default.nix
     ];
