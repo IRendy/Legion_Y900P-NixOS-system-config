@@ -43,21 +43,21 @@ stdenv.mkDerivation (finalAttrs: {
     name = "${finalAttrs.pname}-${finalAttrs.version}";
     hash = "sha256-ICZtSWDWho3UVTMVb4CfAbOSopKXyQEJ/A15BGBLdr0=";
     postFetch = ''
-    mkdir -p $out/.cargo
-    cat > $out/.cargo/config.toml <<EOF
-[source.crates-io]
-replace-with = 'rsproxy-sparse'
+          mkdir -p $out/.cargo
+          cat > $out/.cargo/config.toml <<EOF
+      [source.crates-io]
+      replace-with = 'rsproxy-sparse'
 
-[source.rsproxy-sparse]
-registry = "sparse+https://rsproxy.cn/index/"
+      [source.rsproxy-sparse]
+      registry = "sparse+https://rsproxy.cn/index/"
 
-[registries.rsproxy]
-index = "https://rsproxy.cn/crates.io-index"
+      [registries.rsproxy]
+      index = "https://rsproxy.cn/crates.io-index"
 
-[net]
-git-fetch-with-cli = true
-EOF
-  '';
+      [net]
+      git-fetch-with-cli = true
+      EOF
+    '';
   };
 
   nativeBuildInputs = [

@@ -1,10 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
- 
+  imports = [ ./hardware-configuration.nix ];
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;
   hardware.nvidia.prime = {

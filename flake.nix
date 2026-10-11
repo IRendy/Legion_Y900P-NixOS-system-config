@@ -47,9 +47,7 @@
           #   home-manager.useUserPackages = true;
           #   home-manager.users.irendy = import ./users/irendy/home.nix;
           # }
-          {
-            nix.settings.trusted-users = [ "irendy" ];
-          }
+          { nix.settings.trusted-users = [ "irendy" ]; }
         ];
       };
     };
