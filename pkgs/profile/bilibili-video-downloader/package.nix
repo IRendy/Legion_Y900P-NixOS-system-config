@@ -1,7 +1,7 @@
 {
   lib,
   stdenv,
-  # fetchFromGitHub,
+  fetchFromGitHub,
   nodejs,
   pnpm_10,
   fetchPnpmDeps,
@@ -20,14 +20,14 @@ stdenv.mkDerivation (finalAttrs: {
   version = "0.2.1";
   pname = "bilibili-video-downloader";
 
-  src = ./bilibili-video-downloader-0.2.1;
+  # src = ./bilibili-video-downloader-0.2.1;
 
-  # src = fetchFromGitHub {
-  #   owner = "lanyeeee";
-  #   repo = "bilibili-video-downloader";
-  #   rev = "v${finalAttrs.version}";
-  #   hash = "sha256-VaZQs48K6Oh8mKpDvcbPAy8ud9nl8zytdv6c0OoSQYs=";
-  # };
+  src = fetchFromGitHub {
+    owner = "lanyeeee";
+    repo = "bilibili-video-downloader";
+    rev = "v${finalAttrs.version}";
+    hash = "sha256-VaZQs48K6Oh8mKpDvcbPAy8ud9nl8zytdv6c0OoSQYs=";
+  };
 
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
@@ -38,7 +38,8 @@ stdenv.mkDerivation (finalAttrs: {
 
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit (finalAttrs) src;
-    sourceRoot = "${finalAttrs.src}/src-tauri";
+    # sourceRoot = "${finalAttrs.src}/src-tauri";
+    sourceRoot = "source/src-tauri";
     name = "${finalAttrs.pname}-${finalAttrs.version}";
     hash = "sha256-ICZtSWDWho3UVTMVb4CfAbOSopKXyQEJ/A15BGBLdr0=";
     postFetch = ''

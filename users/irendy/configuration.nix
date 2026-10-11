@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   users.users."irendy" = {
     isNormalUser = true;
     description = "irendy";
@@ -8,21 +7,20 @@
       "wheel"
     ];
     packages = with pkgs; [
-      fastfetch
-      qbittorrent
-      peazip
-      zip
-      unzip
-      rar
-      unrar
-      sqlite
-      bluetui
+      fastfetch # general
       usbutils
       pciutils
-      poppler-utils
-      wineWow64Packages.stable
-      wl-clipboard
-      fish
+      btop
+      htop
+      file
+      ffmpeg
+      jq
+      fd
+      tmux
+      zellij
+      lazygit
+      ranger
+      fish # shell
       elvish
       bat
       dust
@@ -32,41 +30,38 @@
       eza
       resvg
       imagemagick
-      gimp
-      inkscape
-      kitty
+      kitty # terminal
       foot
       alacritty
-      btop
-      htop
-      cyberchef
-      hexyl
-      just
+      poppler-utils
+      qbittorrent
+      peazip # archive
+      zip
+      unzip
+      rar
+      unrar
+      sqlite
+      csvlens
+      bluetui # bluetooth
+      wineWow64Packages.stable
+      wl-clipboard
+      wifitui # network
+      qemu # virtual
+      gimp # image
+      inkscape
+      zig # dev
       gnumake
       nixfmt
       uiua
-      zig
       gfortran
       lua
-      # nodejs
-      ranger
+      nodejs
+      go
+      cyberchef
+      hexyl
+      just
+      racket
       rustup
-      file
-      ffmpeg
-      jq
-      fd
-      tmux
-      zellij
-      lazygit
-      qgis
-      anki-bin
-      stellarium
-      bc
-      goldendict-ng
-      hledger
-      hledger-ui
-      hledger-web
-      android-tools
       jdk
       uv
       ruff
@@ -77,8 +72,7 @@
           sigdb
         ]
       ))
-      (ghidra.withExtensions (p: with p; [ ret-sync findcrypt ]))
-      (python313.withPackages (python-pkgs: with python-pkgs; [ pyproj ]))
+      # (python313.withPackages (python-pkgs: with python-pkgs; [ pyproj ]))
       (python314.withPackages (
         python-pkgs: with python-pkgs; [
           pandas
@@ -95,6 +89,23 @@
       haskellPackages.ghc
       haskellPackages.cabal-install
       haskellPackages.haskell-language-server
+      (ghidra.withExtensions (
+        p: with p; [
+          ret-sync
+          findcrypt
+        ]
+      )) # reverse
+      qgis # study
+      anki-bin
+      stellarium
+      bc
+      goldendict-ng
+      hledger # finance
+      hledger-ui
+      hledger-web
+      android-tools
+
+      # overlays
       bilibili-video-downloader
       ncmdump
       ncmdump-go
@@ -134,6 +145,8 @@
     };
     shellAliases = {
       cls = "clear";
+      lgens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+      delgens = "sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system";
     };
     shellInit = ''
       EDITOR='hx'
@@ -146,12 +159,15 @@
         rm -f -- "$tmp"
       }
     '';
+    interactiveShellInit = ''
+      export PATH="$HOME/.npm-global/bin:$PATH"
+      export PATH="$HOME/.local/bin:$PATH"
+      export PATH="$HOME/go/bin:$PATH"
+    '';
   };
   programs.yazi = {
     enable = true;
-    plugins = {
-      inherit (pkgs.yaziPlugins) mount lazygit;
-    };
+    plugins = { inherit (pkgs.yaziPlugins) mount lazygit; };
     settings = import ../../pkgs/yazi/settings.nix;
   };
   programs.localsend = {
