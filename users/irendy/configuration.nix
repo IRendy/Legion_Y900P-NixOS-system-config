@@ -20,6 +20,9 @@
       zellij
       lazygit
       ranger
+      bc
+      qbittorrent
+      librewolf
       fish # shell
       elvish
       bat
@@ -34,7 +37,6 @@
       foot
       alacritty
       poppler-utils
-      qbittorrent
       peazip # archive
       zip
       unzip
@@ -46,6 +48,16 @@
       wineWow64Packages.stable
       wl-clipboard
       wifitui # network
+      wireshark
+      nmap
+      zenmap
+      dig
+      rustscan
+      arp-scan
+      netscanner
+      urlscan
+      hashcat # secure
+      john
       qemu # virtual
       gimp # image
       inkscape
@@ -98,7 +110,6 @@
       qgis # study
       anki-bin
       stellarium
-      bc
       goldendict-ng
       hledger # finance
       hledger-ui
@@ -167,7 +178,12 @@
   };
   programs.yazi = {
     enable = true;
-    plugins = { inherit (pkgs.yaziPlugins) mount lazygit; };
+    # baidupcs-go on PATH for the baidu plugin, whatever shell yazi is started from
+    package = pkgs.yazi.override { extraPackages = [ pkgs.baidupcs-go ]; };
+    plugins = {
+      inherit (pkgs.yaziPlugins) mount lazygit;
+      baidu = ../../pkgs/yazi/plugins/baidu.yazi;
+    };
     settings = import ../../pkgs/yazi/settings.nix;
   };
   programs.localsend = {
