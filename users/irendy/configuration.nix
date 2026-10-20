@@ -15,6 +15,10 @@
       file
       ffmpeg
       jq
+      libxml2
+      prettier
+      taplo
+      stylua
       fd
       tmux
       zellij
@@ -23,6 +27,10 @@
       bc
       qbittorrent
       librewolf
+      jellyfin
+      jellyfin-web
+      jellyfin-ffmpeg
+      jellyfin-desktop
       fish # shell
       elvish
       bat
@@ -44,6 +52,8 @@
       unrar
       sqlite
       csvlens
+      visidata
+      tabularis
       bluetui # bluetooth
       wineWow64Packages.stable
       wl-clipboard
@@ -127,6 +137,10 @@
     "101.42.138.7" = [ "server1" ];
   };
   services.flatpak.enable = true;
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
   programs.firefox.enable = true;
   programs.steam.enable = true;
   programs.gamemode.enable = true;
@@ -160,6 +174,8 @@
       delgens = "sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system";
     };
     shellInit = ''
+      export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+      export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
       EDITOR='hx'
       function y() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"

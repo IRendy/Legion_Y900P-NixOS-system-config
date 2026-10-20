@@ -44,6 +44,7 @@
       obs-studio
       blender
       godot
+      libreoffice
     ];
   };
 
