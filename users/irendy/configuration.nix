@@ -1,10 +1,17 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   users.users."irendy" = {
     isNormalUser = true;
     description = "irendy";
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = with pkgs; [
       fastfetch # general
@@ -31,6 +38,9 @@
       jellyfin-web
       jellyfin-ffmpeg
       jellyfin-desktop
+      arion
+      docker-client
+      docker-compose
       fish # shell
       elvish
       bat
@@ -84,6 +94,7 @@
       just
       racket
       rustup
+      cargo
       jdk
       uv
       ruff
@@ -176,6 +187,8 @@
     shellInit = ''
       export RUSTUP_DIST_SERVER="https://rsproxy.cn"
       export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
+      export GO111MODULE=on
+      export GOPROXY=https://goproxy.cn
       EDITOR='hx'
       function y() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -206,4 +219,25 @@
     enable = true;
     openFirewall = true;
   };
+  virtualisation = {
+    docker.enable = false;
+    podman = {
+      enable = true;
+      dockerSocket.enable = true;
+    };
+  };
+
+  environment.etc."containers/registries.conf".text = lib.mkForce ''
+    unqualified-search-registries = ["docker.io"]
+
+    [[registry]]
+    prefix = "docker.io"
+    location = "docker.io"
+
+    [[registry.mirror]]
+    location = "docker.xuanyuan.me"
+
+    [[registry.mirror]]
+    location = "docker.1ms.run"
+  '';
 }
