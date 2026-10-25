@@ -37,6 +37,7 @@
       kdePackages.elisa
       termusic
       deadbeef
+      strawberry
       exiftool
       qrrs
       filezilla
