@@ -12,6 +12,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "plugdev"
     ];
     packages = with pkgs; [
       fastfetch # general
@@ -24,6 +25,8 @@
       jq
       libxml2
       prettier
+      nixfmt
+      carapace
       taplo
       stylua
       fd
@@ -33,6 +36,7 @@
       ranger
       bc
       qbittorrent
+      emacs-git
       librewolf
       jellyfin
       jellyfin-web
@@ -83,21 +87,24 @@
       inkscape
       zig # dev
       gnumake
-      nixfmt
+      xmake
       uiua
       gfortran
       lua
       nodejs
       go
       cyberchef
+      openssl
       hexyl
       just
       racket
       rustup
       cargo
+      go
       jdk
       uv
       ruff
+      ruby
       (cutter.withPlugins (
         ps: with ps; [
           jsdec
@@ -117,6 +124,7 @@
           tkinter
           numba
           modelscope
+          rich
         ]
       ))
       haskellPackages.ghc
@@ -136,11 +144,16 @@
       hledger-ui
       hledger-web
       android-tools
+      aapt
+      apktool
+      apksigner
+      jadx
 
       # overlays
       bilibili-video-downloader
       ncmdump
       ncmdump-go
+      # onair # SDR receiver (package in pkgs/onair)
     ];
   };
 

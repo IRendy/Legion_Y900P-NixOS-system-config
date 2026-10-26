@@ -46,6 +46,10 @@
       blender
       godot
       libreoffice
+      onlyoffice-desktopeditors
+      gsettings-desktop-schemas
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
     ];
   };
 
