@@ -34,6 +34,10 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
+  # services.udev.extraRules = ''
+  #   # CH340/CH341 USB-to-serial (for Chrome Web Serial)
+  #   SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", GROUP="dialout", MODE="0660", TAG+="uaccess"
+  # '';
   nixpkgs.config.permittedInsecurePackages = [ "pnpm-10.34.0" ];
   system.stateVersion = "26.05";
 }

@@ -13,6 +13,7 @@
       "wheel"
       "docker"
       "plugdev"
+      "dialout"
     ];
     packages = with pkgs; [
       fastfetch # general
@@ -38,6 +39,7 @@
       qbittorrent
       emacs-git
       librewolf
+      chromium
       jellyfin
       jellyfin-web
       jellyfin-ffmpeg
