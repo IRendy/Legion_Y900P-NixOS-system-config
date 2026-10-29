@@ -122,6 +122,7 @@
       (python314.withPackages (
         python-pkgs: with python-pkgs; [
           pydantic
+          fastapi
           pandas
           tabulate
           openpyxl
