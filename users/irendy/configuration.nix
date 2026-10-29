@@ -90,6 +90,8 @@
       zig # dev
       gnumake
       xmake
+      cmake
+      ninja
       uiua
       gfortran
       lua
@@ -100,8 +102,11 @@
       hexyl
       just
       racket
-      rustup
       cargo
+      rustc
+      rustfmt
+      rust-analyzer
+      clippy
       go
       jdk
       uv
@@ -114,19 +119,24 @@
           sigdb
         ]
       ))
-      # (python313.withPackages (python-pkgs: with python-pkgs; [ pyproj ]))
       (python314.withPackages (
         python-pkgs: with python-pkgs; [
           pandas
           openpyxl
           xlrd
+          pyyaml
+          pydantic
           requests
+          httpx
+          aiohttp
           numpy
           matplotlib
           tkinter
           numba
           modelscope
           rich
+          tqdm
+          loguru
         ]
       ))
       haskellPackages.ghc
