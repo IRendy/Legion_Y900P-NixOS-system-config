@@ -121,7 +121,9 @@
       ))
       (python314.withPackages (
         python-pkgs: with python-pkgs; [
+          pydantic
           pandas
+          tabulate
           openpyxl
           xlrd
           pyyaml
@@ -129,12 +131,18 @@
           requests
           httpx
           aiohttp
+          beautifulsoup4
+          lxml
+          playwright
+          django
+          flask
           numpy
           matplotlib
           tkinter
           numba
           modelscope
           rich
+          click
           tqdm
           loguru
         ]
