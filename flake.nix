@@ -19,6 +19,7 @@
   };
   inputs = {
     nixpkgs.url = "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-26.05&shallow=1";
+    # deepseek-harness.url = "github:Moraxyc/deepseek-harness.nix";
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-26.05";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +31,7 @@
     {
       self,
       nixpkgs,
+      # deepseek-harness,
       # home-manager,
       # nix-flatpak,
       ...
@@ -40,6 +42,7 @@
           # nix-flatpak.nixosModules.nix-flatpak
 
           ./configuration.nix
+          # { nixpkgs.overlays = [ deepseek-harness.overlays.default ]; }
 
           # home-manager.nixosModules.home-manager
           # {

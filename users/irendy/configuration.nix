@@ -19,7 +19,7 @@
       fastfetch # general
       usbutils
       pciutils
-      btop
+      btop-cuda
       htop
       file
       ffmpeg
@@ -47,6 +47,8 @@
       arion
       docker-client
       docker-compose
+      ollama-cuda
+      # dsh
       fish # shell
       elvish
       bat
@@ -186,6 +188,7 @@
     enable = true;
     openFirewall = true;
   };
+  services.ollama.package = pkgs.ollma-cuda;
   programs.firefox.enable = true;
   programs.steam.enable = true;
   programs.gamemode.enable = true;
