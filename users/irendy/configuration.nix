@@ -14,6 +14,10 @@
       "docker"
       "plugdev"
       "dialout"
+      "jellyfin"
+      "kvm"
+      "render"
+      "video"
     ];
     packages = with pkgs; [
       fastfetch # general
@@ -192,7 +196,6 @@
   programs.firefox.enable = true;
   programs.steam.enable = true;
   programs.gamemode.enable = true;
-  programs.nix-ld.enable = true;
   programs.clash-verge = {
     enable = true;
     tunMode = true;
@@ -255,6 +258,42 @@
   programs.localsend = {
     enable = true;
     openFirewall = true;
+  };
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      libgbm
+      libglvnd
+      libdrm
+      libpng
+      libpulseaudio
+      libGL
+      libSM
+      libICE
+      libxcb
+      libxcb-util
+      libxcb-wm
+      libxcb-image
+      libxcb-keysyms
+      libxcb-render-util
+      libx11
+      libxext
+      libxrender
+      libxfixes
+      libxtst
+      libxcomposite
+      libxdamage
+      libxinerama
+      libxshmfence
+      libxkbcommon
+      libxcursor
+      libxi
+      mesa
+      fontconfig
+      freetype
+      glib
+      stdenv.cc.cc.lib
+    ];
   };
   virtualisation = {
     docker.enable = false;
