@@ -131,4 +131,9 @@
     open-sans
   ];
   fonts.fontconfig.useEmbeddedBitmaps = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 }

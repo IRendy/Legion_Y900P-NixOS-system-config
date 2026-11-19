@@ -6,7 +6,7 @@
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://mirrors.ha.edu.cn/nix-channels/store"
-      "https://mirror.nju.edu.cn/nix-channels/store"
+      # "https://mirror.nju.edu.cn/nix-channels/store"
       "https://mirror.nyist.edu.cn/nix-channels/store"
       "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
@@ -18,7 +18,8 @@
     ];
   };
   inputs = {
-    nixpkgs.url = "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-26.05&shallow=1";
+    # nixpkgs.url = "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-26.05&shallow=1";
+    nixpkgs.url = "git+https://mirrors.tuna.tsinghua.edu.cn/git/nixpkgs.git?ref=nixos-26.05&shallow=1";
     # deepseek-harness.url = "github:Moraxyc/deepseek-harness.nix";
     # home-manager = {
     #   url = "github:nix-community/home-manager/release-26.05";

@@ -18,6 +18,7 @@
       "kvm"
       "render"
       "video"
+      "libvirtd"
     ];
     packages = with pkgs; [
       fastfetch # general
@@ -63,6 +64,7 @@
       eza
       resvg
       imagemagick
+      pastel
       kitty # terminal
       foot
       alacritty
@@ -78,6 +80,7 @@
       tabularis
       bluetui # bluetooth
       wineWow64Packages.stable
+      appimage-run
       wl-clipboard
       wifitui # network
       wireshark
@@ -103,6 +106,7 @@
       lua
       nodejs
       go
+      dotnet-sdk
       cyberchef
       openssl
       hexyl
@@ -163,14 +167,21 @@
           findcrypt
         ]
       )) # reverse
-      qgis # study
       anki-bin
+      (qgis.override {
+        extraPythonPackages = ps: [
+          ps.pyproj
+          ps.timezonefinder
+          ps.skyfield
+        ];
+      })
       stellarium
       goldendict-ng
       hledger # finance
       hledger-ui
       hledger-web
-      android-tools
+      android-tools # android
+      scrcpy
       aapt
       apktool
       apksigner
@@ -196,6 +207,7 @@
   programs.firefox.enable = true;
   programs.steam.enable = true;
   programs.gamemode.enable = true;
+  programs.virt-manager.enable = true;
   programs.clash-verge = {
     enable = true;
     tunMode = true;
@@ -203,6 +215,15 @@
     group = "users";
     package = pkgs.clash-verge-rev;
   };
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+  programs.appimage.package = pkgs.appimage-run.override {
+    extraPkgs = pkgs: [
+      pkgs.icu
+      pkgs.libxcrypt-legacy
+    ];
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestions.enable = true;
@@ -291,6 +312,7 @@
       mesa
       fontconfig
       freetype
+      glfw
       glib
       stdenv.cc.cc.lib
     ];
@@ -300,6 +322,10 @@
     podman = {
       enable = true;
       dockerSocket.enable = true;
+    };
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
     };
   };
 
@@ -316,4 +342,7 @@
     [[registry.mirror]]
     location = "docker.1ms.run"
   '';
+  systemd.tmpfiles.rules = [
+    "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"
+  ];
 }
