@@ -8,6 +8,8 @@
   users.users."irendy" = {
     isNormalUser = true;
     description = "irendy";
+    shell = pkgs.zsh;
+    useDefaultShell = false;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -112,11 +114,12 @@
       hexyl
       just
       racket
-      cargo
-      rustc
-      rustfmt
-      rust-analyzer
-      clippy
+      # cargo
+      # rustc
+      # rustfmt
+      # rust-analyzer
+      # clippy
+      rustup
       go
       jdk
       uv
